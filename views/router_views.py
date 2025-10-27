@@ -47,7 +47,7 @@ def get_external_network(request):
         logger.error(f"{str(e)}",
                      extra=custom_log("get_external_network", user_info, org, {}))
     return JsonResponse(public_networks, safe=False, status=200)
-
+################
 @swagger_auto_schema(
     method='get',
     operation_id="get_internal_subnet",
