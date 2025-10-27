@@ -44,23 +44,6 @@ SECURITY_RULES_PER_INSTANCE = int(config('SECURITY_RULES_PER_INSTANCE'))
 PORTS_PER_INSTANCE = int(config('PORTS_PER_INSTANCE'))
 from django.contrib.auth.hashers import check_password
 
-def create_user(conn, username, orgdomain, project, password, keystone_role):
-    # Create user
-    user = conn.identity.find_user(username)
-    if not user:
-        user = conn.identity.create_user(
-            name=username,
-            domain_id=orgdomain.id,
-            default_project_id=project.id,
-            password=password
-        )
-    # Assign role
-    role_obj = conn.identity.find_role(keystone_role )
-    #if not role_obj:
-    #    role_obj = conn.identity.create_role(name=user_role)
-    conn.identity.assign_project_role_to_user(project=project, user=user, role=role_obj)
-    return user
-
 def normalize_name(name):
     name = name.strip().lower().replace(" ", "_")
     org_domain_name = f"domain_{name}"
