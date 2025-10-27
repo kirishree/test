@@ -25,13 +25,6 @@ from decouple import config
 PROJECT_OVERVIEW_CACHE_TIME = int(config('PROJECT_OVERVIEW_CACHE_TIME'))
 
 NOVA_URL = "http://controller:8774/v2.1"  # Change to your controller's API URL
-def get_context(request):
-        conn = request.keystone_conn  
-        user_info = request.keystone_user_info
-        org = request.org
-        project_id = request.token_project_id 
-        role = request.role
-        return conn, user_info, org, project_id, role
 
 
 class ComputeOverviewView(APIView):
