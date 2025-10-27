@@ -44,11 +44,6 @@ SECURITY_RULES_PER_INSTANCE = int(config('SECURITY_RULES_PER_INSTANCE'))
 PORTS_PER_INSTANCE = int(config('PORTS_PER_INSTANCE'))
 from django.contrib.auth.hashers import check_password
 
-def normalize_name(name):
-    name = name.strip().lower().replace(" ", "_")
-    org_domain_name = f"domain_{name}"
-    project_name = f"{name}"
-    return name, org_domain_name, project_name
 
 def admin_auth():
     admin_auth = v3.Password(auth_url=KEYSTONE_URL,
